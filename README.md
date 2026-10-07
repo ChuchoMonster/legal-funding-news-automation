@@ -1,5 +1,7 @@
 # Legal Funding News Automation
 
+![tests](https://github.com/ChuchoMonster/legal-funding-news-automation/actions/workflows/tests.yml/badge.svg)
+
 Automation behind [Legal Funding Journal](https://legalfundingjournal.com/), a daily
 litigation-finance news publication. Four mornings a week an unattended agent run
 searches global news, filters out anything already covered, writes short news blurbs,
@@ -78,6 +80,14 @@ automation/daily_run.sh --dry-run     # search + selection only, publishes nothi
 
 To schedule, create launchd agents that call `automation/daily_run.sh` (Mon-Thu 08:00),
 `automation/newsletter_run.sh` (Thu 10:00) and both with `--catchup` at login.
+
+## Tests
+
+- `pip install -r requirements-dev.txt`, then `pytest` from the repo root.
+- Covers the 48-hour freshness filter, dedupe and own-site exclusion, SerpAPI retries and quota checks, and Google News RSS parsing across locales.
+- Covers what gets sent out: the WordPress post payload (`post-to-wp.sh` is run for real against a fake `curl`), contributed-article Word parsing, Buffer requests, image prompts, and newsletter HTML assembly against Mailchimp.
+- No network and no credentials: every HTTP call, `curl` and Gmail call is replaced with a fake, and all test data is fictional.
+- Runs on every push and pull request via GitHub Actions.
 
 ## Environment variables
 
