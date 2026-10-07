@@ -1,0 +1,27 @@
+.env*
+!.env.example
+*.csv
+*.db*
+*.log
+*.xlsx
+*.xls
+*.json
+!package.json
+*.jpg
+*.jpeg
+*.png
+*.webp
+*.bak*
+logs/
+automation/logs/
+automation/.*.lock/
+data/
+output/
+__pycache__/
+*.pyc
+node_modules/
+.DS_Store
+.claude/
+
+# Generated daily write-ups and newsletters (root only; examples/ is tracked)
+/[0-9][0-9][0-9][0-9]-*.md
